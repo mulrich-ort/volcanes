@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- 1. Permisos para que el sistema operativo de Meta lo reconozca como VR Headset -->
+    <uses-feature android:name="android.hardware.vr.headtracking" android:required="true" android:version="1" />
+    <uses-feature android:name="oculus.software.handtracking" android:required="false" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- 2. Metadato obligatorio para Oculus Mobile VR -->
+        <meta-data android:name="com.samsung.android.vr.application.mode" android:value="vr_only" />
+
         <activity
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
+            android:configChanges="density|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBarLaunch"
@@ -20,6 +29,9 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                
+                <!-- 3. LA CLAVE: Categoría Oculus VR para que no abra como ventana 2D -->
+                <category android:name="com.oculus.intent.category.VR" />
             </intent-filter>
 
         </activity>
@@ -34,8 +46,4 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
     </application>
-
-    <!-- Permissions -->
-
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
