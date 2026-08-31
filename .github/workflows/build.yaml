@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 22
 
-      - name: Set up Java 21 (Requerido por Capacitor)
+      - name: Set up Java 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -30,17 +30,11 @@ jobs:
       - name: Install dependencies & Build Web
         run: |
           npm install
-          npm install @capacitor/core @capacitor/cli @capacitor/android --save
           npm run build
 
-      - name: Initialize Capacitor Android if not present
+      - name: Sync Capacitor Android
         run: |
-          if [ ! -d "android" ]; then
-            npx cap init "Volcano VR" "com.volcano.vr" --web-dir dist
-            npx cap add android
-          else
-            npx cap sync android
-          fi
+          npx cap sync android
 
       - name: Build APK with Gradle
         run: |
