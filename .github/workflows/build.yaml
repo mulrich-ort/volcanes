@@ -1,32 +1,55 @@
 name: Build Android APK
+
 on:
-  workflow_dispatch:
   push:
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - uses: actions/setup-java@v4
+          node-version: 22
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Install & Build Web
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install dependencies & Build Web
         run: |
           npm install
+          npm install @capacitor/core @capacitor/cli @capacitor/android --save
           npm run build
-          npx cap sync android
-      - name: Build APK
+
+      - name: Initialize Capacitor Android if not present
+        run: |
+          if [ ! -d "android" ]; then
+            npx cap init "Volcano VR" "com.volcano.vr" --web-dir dist
+            npx cap add android
+          else
+            npx cap sync android
+          fi
+
+      - name: Build APK with Gradle
         run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Volcano-VR-Quest-APK
+          name: Volcano-VR-Quest3-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
