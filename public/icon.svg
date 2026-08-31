@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#0f172a"/>
+  <!-- Volcano Mountain -->
+  <polygon points="96,416 256,160 416,416" fill="#334155"/>
+  <polygon points="192,256 256,160 320,256" fill="#475569"/>
+  <!-- Lava crater glow -->
+  <ellipse cx="256" cy="160" rx="40" ry="12" fill="#ef4444"/>
+  <!-- Eruption Plume -->
+  <circle cx="256" cy="120" r="30" fill="#f97316" opacity="0.9"/>
+  <circle cx="230" cy="90" r="24" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="280" cy="80" r="28" fill="#ef4444" opacity="0.85"/>
+  <circle cx="256" cy="50" r="20" fill="#cbd5e1" opacity="0.7"/>
+</svg>

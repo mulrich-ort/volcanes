@@ -1,0 +1,8 @@
+{
+  "name": "Simulador de Volcanes VR",
+  "description": "Una experiencia inmersiva e interactiva en 3D y VR para Meta Quest 3 y navegadores web, diseñada para el estudio científico de las etapas de una erupción volcánica con datos en tiempo real.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

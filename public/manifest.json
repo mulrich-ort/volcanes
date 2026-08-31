@@ -1,0 +1,17 @@
+{
+  "name": "Simulador de Volcanes VR",
+  "short_name": "Volcano VR",
+  "description": "Simulación volcánica interactiva WebXR para Meta Quest 3",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#ef4444",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
